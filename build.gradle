@@ -23,6 +23,12 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
+    // H2
+    implementation 'com.h2database:h2'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+
+    // JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
 }
 
