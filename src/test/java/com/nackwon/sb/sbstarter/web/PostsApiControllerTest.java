@@ -2,12 +2,11 @@ package com.nackwon.sb.sbstarter.web;
 
 import com.nackwon.sb.sbstarter.domain.posts.PostRepository;
 import com.nackwon.sb.sbstarter.domain.posts.Posts;
-import com.nackwon.sb.sbstarter.domain.posts.PostsService;
 import com.nackwon.sb.sbstarter.web.dto.PostsSaveRequestDto;
 import com.nackwon.sb.sbstarter.web.dto.PostsUpdateRequestDto;
+
 import org.junit.After;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -23,8 +22,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-class PostsApplicationControllerTest {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+class PostsApiControllerTest {
 
     @LocalServerPort
     private int port;
@@ -103,4 +102,6 @@ class PostsApplicationControllerTest {
         assertThat(all.get(0).getContent()).isEqualTo(sUpdateContent);
 
     }
+
+
 }
