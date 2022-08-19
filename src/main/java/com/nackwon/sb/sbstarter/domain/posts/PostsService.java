@@ -1,13 +1,16 @@
 package com.nackwon.sb.sbstarter.domain.posts;
 
+import com.nackwon.sb.sbstarter.web.dto.PostsListResponseDto;
 import com.nackwon.sb.sbstarter.web.dto.PostsResponseDto;
 import com.nackwon.sb.sbstarter.web.dto.PostsSaveRequestDto;
 import com.nackwon.sb.sbstarter.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
+import java.util.List;
 import java.util.PrimitiveIterator;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -29,11 +32,23 @@ public class PostsService {
 
         return id;
     }
-
     public PostsResponseDto findById(Long id) {
         Posts entity = postRepository.findById(id)
                 .orElseThrow( () -> new IllegalArgumentException("해당 게시들이 없습니다. id=" + id));
 
         return new PostsResponseDto(entity);
+    }
+
+    public List<PostsListResponseDto> findAllDesc() {
+        return postRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Posts entity = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No have Content. id=" + id));
+
+        postRepository.delete(entity);
     }
 }

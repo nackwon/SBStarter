@@ -7,7 +7,29 @@
             <a href="/posts/save" role="button" class="btn btn-primary">Insert</a>
         </div>
     </div>
+    <br>
 
+    <!-- 목록 출력 영역 -->
+    <table class="table table-horizontal table-bordered">
+        <thead class="thread-strong">
+        <tr>
+            <th>Number</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Content</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#posts}}
+            <tr>
+                <td>{{id}}</td>
+                <td><a href="/posts/update/{{id}}">{{title}}</a></td>
+                <td>{{author}}</td>
+                <td>{{modifiedDate}}</td>
+            </tr>
+        {{/posts}}
+        </tbody>
+    </table>
 </div>
 
 {{>layout/footer}}
